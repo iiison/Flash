@@ -55,6 +55,13 @@ const base = {
   module : {
     rules : [
       {
+        enforce : 'pre',
+        test    : /\.js$/,
+        loader  : 'eslint-loader',
+        include : PATHS.app,
+        exclude : /bundle\.js/
+      },
+      {
         test    : /\.js$/,
         exclude : /node_modules/,
         loader  : 'babel-loader'
@@ -65,6 +72,7 @@ const base = {
     modules    : [path.resolve('.'), 'node_modules'],
     extensions : ['.js'],
     alias      : {
+      '$js' : PATHS.js,
     }
   },
   target : 'web'
