@@ -1,6 +1,7 @@
 import Base from '$lib/Base'
 import View from '$js/View'
 import initRoutes from '$js/routes'
+import { getTemplate } from './utils'
 
 /**
  * Main Class, instentiates View and Model
@@ -15,8 +16,12 @@ class Controller extends Base {
 
     this.view = View.create()
 
-    this.view.on('change:user', (userName) => {
-      alert(`user changed, new user is ${userName}`)
+    window.view = this.view
+    this.view.on('change:viewName', (viewName) => {
+      getTemplate(viewName)
+        .then((template) => {
+          this.view.render(template, { value : `${viewName} page` })
+        })
     })
   }
 
@@ -31,6 +36,8 @@ class Controller extends Base {
 }
 
 const controller = Controller.create()
+
+initRoutes(controller)
 
 export default controller
 

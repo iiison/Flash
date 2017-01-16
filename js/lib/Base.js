@@ -9,7 +9,7 @@ export default class Base {
   constructor() {
     this.events = {}
     this.data = {}
-    this.overvables = {}
+    this.observables = {}
   }
 
   /**
@@ -33,7 +33,7 @@ export default class Base {
       setProp(prop, value)
     }
 
-    if (this.overvables[prop]) {
+    if (this.observables[prop]) {
       this.emit(prop, value)
     }
 
@@ -63,10 +63,10 @@ export default class Base {
 
     if (event.startsWith('change:')) {
       newEvent = event.split(':')[1]
-      this.overvables[event] = true
+      this.observables[newEvent] = true
     }
 
-    this.events[event] = callback
+    this.events[newEvent] = callback
   }
 
   /**

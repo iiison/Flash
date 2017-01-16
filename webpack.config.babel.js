@@ -23,9 +23,6 @@ const PATHS          = {
   build      : path.join(__dirname, 'build')
 }
 
-console.log('%c <><><><><><><><><><><><><><><>', 'color: green, font-weight: bold')
-console.log(PATHS.js)
-console.log('%c <><><><><><><><><><><><><><><>', 'color: green, font-weight: bold')
 // Plugins Config Starts
 const prodPlugin = new webpack.DefinePlugin({
   'process.env': {
@@ -55,6 +52,11 @@ const base = {
     bundle : `${PATHS.js}/controller.js`,
     vendor : ['axios']
   },
+  output: {
+    path       : PATHS.build,
+    filename   : '[name].js',
+    publicPath : '/'
+  },
   module : {
     rules : [
       {
@@ -68,6 +70,10 @@ const base = {
         test    : /\.js$/,
         exclude : /node_modules/,
         loader  : 'babel-loader'
+      },
+      {
+        test   : /\.tpl$/,
+        loader : 'handlebars-loader'
       }
     ]
   },

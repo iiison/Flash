@@ -218,13 +218,14 @@ const baseRules = {
   "max-len": [2, 150],
   "no-restricted-syntax": [0, "WithStatement"],
   "new-cap" : 0,
-  "guard-for-in" : 0
+  "guard-for-in" : 0,
+  "import/prefer-default-export" : 0
 };
 
 const PROD = {
-  "no-console"     : 2,
+  "no-console"     : 0,
   "no-debugger"    : 2,
-  "no-alert"       : 2,
+  "no-alert"       : 0,
   "no-unused-vars" : [2, { "varsIgnorePattern": "[iI]gnored" }]
 };
 
