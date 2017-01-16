@@ -23,6 +23,9 @@ const PATHS          = {
   build      : path.join(__dirname, 'build')
 }
 
+console.log('%c <><><><><><><><><><><><><><><>', 'color: green, font-weight: bold')
+console.log(PATHS.js)
+console.log('%c <><><><><><><><><><><><><><><>', 'color: green, font-weight: bold')
 // Plugins Config Starts
 const prodPlugin = new webpack.DefinePlugin({
   'process.env': {
@@ -58,7 +61,7 @@ const base = {
         enforce : 'pre',
         test    : /\.js$/,
         loader  : 'eslint-loader',
-        include : PATHS.app,
+        include : PATHS.js,
         exclude : /bundle\.js/
       },
       {

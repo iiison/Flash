@@ -11,10 +11,10 @@ export default function initRoutes() {
   const routes = {
     // No Need to pass context and next everytime, Planning to store
     // data in context object in future.
-    landing : function(context, next){
+    landing(context, next) {
       alert('Landing BC')
     },
-    test : function(context, next){
+    test(context, next) {
       alert('Test Route')
     }
   }

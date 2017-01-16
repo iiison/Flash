@@ -1,16 +1,31 @@
+/**
+ * Base Class, provides mean to set, get data and
+ * event emiter
+ */
 export default class Base {
-  constructor () {
-    this.events     = {}
-    this.data       = {}
+  /**
+   * Base class constructor
+   */
+  constructor() {
+    this.events = {}
+    this.data = {}
     this.overvables = {}
   }
 
+  /**
+   * Set property to `data` variable of the instance
+   * @param {String/Object} prop   Property to set on `data`, pass an
+   *                               object if need to set props in burst
+   * @param {any}           value  Value of Prop, don't send this variable
+   *                               if passing `prop` as an object
+   * @return {Object}              Updated `data`
+   */
   set(prop, value) {
     const setProp = (prp, val) => {
       this.data[prp] = val
     }
 
-    if (Object(prop) === prop){
+    if (Object(prop) === prop) {
       for (const iterator in prop) {
         setProp(iterator, prop[iterator])
       }
@@ -25,22 +40,41 @@ export default class Base {
     return this.data
   }
 
+  /**
+   * Get `data` property of the instance
+   * @param  {String} prop  property name
+   * @return {Any}         value of property
+   */
   get(prop) {
     if (!prop) {
       return this.data
     }
+
     return this.data[prop]
   }
 
+  /**
+   * Set Custom Events
+   * @param  {String}   event     Event Name
+   * @param  {Function} callback  Callback of event
+   */
   on(event, callback) {
+    let newEvent = event
+
     if (event.startsWith('change:')) {
-      event = event.split(':')[1]
+      newEvent = event.split(':')[1]
       this.overvables[event] = true
     }
 
     this.events[event] = callback
   }
 
+  /**
+   * Execute or emit custom event
+   * @param  {String}        event  Event Name
+   * @param  {Object/Array} args   Arguments to custom events
+   * @return {Any}                  Result of custom event
+   */
   emit(event, args) {
     return this.events[event](args)
   }

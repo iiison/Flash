@@ -1,46 +1,41 @@
-import View from '$js/View'
 import Base from '$lib/Base'
+import View from '$js/View'
 import initRoutes from '$js/routes'
 
-/*
-alert('Testing this stuff!')
-view()
-initRoutes()
-*/
-
+/**
+ * Main Class, instentiates View and Model
+ */
 class Controller extends Base {
-  constructor(){
+  /**
+   * Controller Class Contructor,
+   * initializes View, Model and Routes
+   */
+  constructor() {
     super()
 
     this.view = View.create()
 
-    this.view.set({
-      'val' : 'test',
-      'val1' : 'test1',
-      'val2' : 'test2'
-    })
-
-    this.view.on('login', function () {
-      alert('Lassun')
-    })
-
-    this.view.on('change:user', function (userName) {
+    this.view.on('change:user', (userName) => {
       alert(`user changed, new user is ${userName}`)
     })
-
-    console.log('%c <><><><><><><><><><><><><><><>', 'color: green, font-weight: bold')
-    console.log(this.view)
-    console.log('%c <><><><><><><><><><><><><><><>', 'color: green, font-weight: bold')
-    window.v = this.view
   }
 
-  static create (){
+  /**
+   * Static Class member, just call `create` method to
+   * instantiate the class
+   * @return {Controller}  instance of controller class
+   */
+  static create() {
     return new Controller()
   }
 }
 
-const ctrl = Controller.create()
+const controller = Controller.create()
 
-ctrl.on('change', function (val) {
-  alert(val)
-})
+export default controller
+
+/*
+document.addEventListener("DOMContentLoaded", function(event) {
+  window.
+});
+*/

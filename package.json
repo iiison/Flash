@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.config.babel.js --progress --open"
+    "start": "webpack-dev-server --config webpack.config.babel.js --progress --open",
+    "production": "webpack -p"
   },
   "repository": {
     "type": "git",
@@ -26,10 +27,10 @@
     "babel-preset-stage-0": "^6.16.0",
     "eslint": "^3.13.1",
     "eslint-config-airbnb": "^14.0.0",
+    "eslint-import-resolver-webpack": "^0.8.0",
     "eslint-loader": "^1.6.1",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^3.0.2",
-    "eslint-plugin-react": "^6.9.0",
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "html-webpack-plugin": "^2.22.0",
     "webpack": "^2.1.0-beta.26",
