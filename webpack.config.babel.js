@@ -72,7 +72,8 @@ const base = {
     modules    : [path.resolve('.'), 'node_modules'],
     extensions : ['.js'],
     alias      : {
-      '$js' : PATHS.js,
+      '$js'  : PATHS.js,
+      '$lib' : `${PATHS.js}/lib`,
     }
   },
   target : 'web'
