@@ -19,8 +19,11 @@ class Controller extends Base {
     window.view = this.view
     this.view.on('change:viewName', (viewName) => {
       getTemplate(viewName)
-        .then((template) => {
-          this.view.render(template, { value : `${viewName} page` })
+        .then(({ template, styles }) => {
+          console.log('%c <><><><><><><><><><><><><><><>', 'color: green')
+          console.log(styles)
+          console.log('%c <><><><><><><><><><><><><><><>', 'color: green')
+          this.view.render(template, { value : `${viewName} page`, styles })
         })
     })
   }

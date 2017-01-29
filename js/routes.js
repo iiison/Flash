@@ -21,15 +21,15 @@ export default function initRoutes(controller) {
       landing() {
         controller.view.set('viewName', 'login')
       },
-      test() {
-        alert('Test Route')
+      home() {
+        controller.view.set('viewName', 'home')
       }
     }
 
     // Set base URL, all paths will include the base path
     // page.base('/app/')
     page('/', routes.landing)
-    page('/test', routes.test)
+    page('/home', routes.home)
     page()
   }
 }

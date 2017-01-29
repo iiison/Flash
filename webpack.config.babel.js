@@ -15,6 +15,7 @@ import path               from 'path'
 import webpack            from 'webpack'
 // import webpackLoadPlugins from 'webpack-load-plugins'
 import HtmlWebpackPlugin  from 'html-webpack-plugin'
+import ExtractTextPlugin  from 'extract-text-webpack-plugin'
 
 const LAUNCH_COMMAND = process.env.npm_lifecycle_event
 const isProd         = LAUNCH_COMMAND === 'production'
@@ -41,6 +42,16 @@ const commonsVendorChunk = new webpack.optimize.CommonsChunkPlugin({
   minChunks : Infinity,
   filename  : 'vendor.commons.js'
 })
+
+const extractTextPluginConfig  = new ExtractTextPlugin({
+  allChunks : false,
+  filename  : '[name]_[hash:base64:5].css'
+})
+
+const extractTextPluginOptions = {
+  fallbackLoader : 'style-loader',
+  loader         : 'css-loader?importLoaders=1&modules&camelCase=true&minimize=true&localIdentName=[path][name]---[local]---[hash:base64:5]'
+}
 // Plugins Config Ends
 
 process.env.BABEL_ENV = LAUNCH_COMMAND
@@ -74,6 +85,10 @@ const base = {
       {
         test   : /\.tpl$/,
         loader : 'handlebars-loader'
+      },
+      {
+        test : /\.css$/,
+        use : ExtractTextPlugin.extract(extractTextPluginOptions)
       }
     ]
   },
@@ -88,7 +103,7 @@ const base = {
   target : 'web'
 }
 
-const commonPlugins = [HTMLWebpackPluginConfig, commonsVendorChunk]
+const commonPlugins = [HTMLWebpackPluginConfig, commonsVendorChunk, extractTextPluginConfig]
 
 const prodConf = {
   devtool : 'false',

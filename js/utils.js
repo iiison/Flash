@@ -1,20 +1,32 @@
 /**
  * Fetches Template Chunks according to different routes
- * @param  {String} template  viewName
- * @return {Function}         Handlebars template function
+ * @param  {String} templateName  viewName
+ * @return {Function}             Handlebars template function
  */
-export function getTemplate(template) {
-  switch (template) {
+export function getTemplate(templateName) {
+  switch (templateName) {
   case 'login' :
     return System.import('templates/login.tpl')
-    .then((result) => result)
+    .then((template) => {
+      return System.import('styles/base.css')
+        .then((styles) => {
+          return { styles, template }
+        })
+      // return result
+    })
     .catch((error) => {
       throw error
     })
 
   case 'home' :
     return System.import('templates/home.tpl')
-    .then((result) => result)
+    .then((template) => {
+      return System.import('styles/base1.css')
+        .then((styles) => {
+          return { styles, template }
+        })
+      // return result
+    })
     .catch((error) => {
       throw error
     })
