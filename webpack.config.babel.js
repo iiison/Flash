@@ -21,6 +21,7 @@ const LAUNCH_COMMAND = process.env.npm_lifecycle_event
 const isProd         = LAUNCH_COMMAND === 'production'
 const PATHS          = {
   js         : path.join(__dirname, 'js'),
+  styles     : path.join(__dirname, 'styles'),
   build      : path.join(__dirname, 'build')
 }
 
@@ -50,7 +51,7 @@ const extractTextPluginConfig  = new ExtractTextPlugin({
 
 const extractTextPluginOptions = {
   fallbackLoader : 'style-loader',
-  loader         : 'css-loader?importLoaders=1&modules&camelCase=true&minimize=true&localIdentName=[path][name]---[local]---[hash:base64:5]'
+  loader         : ['css-loader?importLoaders=1&modules&camelCase=true&minimize=true&localIdentName=[path][name]---[local]---[hash:base64:5]', 'postcss-loader']
 }
 // Plugins Config Ends
 
@@ -61,7 +62,8 @@ process.env.isProd    = isProd
 const base = {
   entry : {
     bundle : `${PATHS.js}/controller.js`,
-    vendor : ['axios']
+    vendor : ['axios'],
+    styles : `${PATHS.styles}/main.css`,
   },
   output: {
     path       : PATHS.build,
