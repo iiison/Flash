@@ -200,7 +200,8 @@ const baseRules = {
   "semi": [2, "never"], // http://blog.izs.me/post/2353458699/an-open-letter-to-javascript-leaders-regarding
   "space-infix-ops": 2,
   "spaced-comment": [2, "always", { "block": { "exceptions": ["-", "+", "*"] } }],
-  "arrow-body-style": [2, "as-needed", { requireReturnForObjectLiteral: true }],
+  // "arrow-body-style": [2, "as-needed", { requireReturnForObjectLiteral: true }],
+  "arrow-body-style": 0,
   "arrow-parens": [2, "always"],
   "arrow-spacing": 2,
   "constructor-super": 2,

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config webpack.config.babel.js --progress --open",
-    "production": "webpack -p"
+    "production": "webpack -p --optimize-minimize",
+    "profile": "webpack --config webpack.config.babel.js --profile --json >> stats.json"
   },
   "repository": {
     "type": "git",
@@ -33,14 +34,14 @@
     "eslint-loader": "^1.6.1",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^3.0.2",
-    "extract-text-webpack-plugin": "^2.0.0-rc.1",
+    "eslint-plugin-react": "^6.10.3",
+    "extract-text-webpack-plugin": "^2.1.0",
     "html-webpack-plugin": "^2.22.0",
     "postcss": "^5.2.11",
     "postcss-assets": "^4.1.0",
     "postcss-cssnext": "^2.9.0",
     "postcss-discard-comments": "^2.0.4",
     "postcss-discard-duplicates": "^2.0.2",
-    "postcss-discard-unused": "^2.2.3",
     "postcss-loader": "^1.2.2",
     "postcss-merge-longhand": "^2.0.2",
     "postcss-merge-rules": "^2.1.1",

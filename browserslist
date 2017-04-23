@@ -1,0 +1,4 @@
+# Add browsers to be supported by your app
+# for detailed browser list, follow: https://github.com/ai/browserslist#config-file
+last 4 versions
+not ie <= 8

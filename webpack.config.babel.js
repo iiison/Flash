@@ -50,10 +50,32 @@ const extractTextPluginConfig  = new ExtractTextPlugin({
 })
 
 const extractTextPluginOptions = {
-  fallbackLoader : 'style-loader',
-  loader         : ['css-loader?importLoaders=1&modules&camelCase=true&minimize=true&localIdentName=[path][name]---[local]---[hash:base64:5]', 'postcss-loader']
+  fallback : 'style-loader',
+  use      : ['css-loader?importLoaders=1&modules&camelCase=true&minimize=true&localIdentName=[path][name]---[local]---[hash:base64:5]', 'postcss-loader']
 }
 // Plugins Config Ends
+
+// Style loader config
+const styleLoader = {
+  fallbackLoader: 'style-loader',
+  use : [
+    {
+      loader  : 'css-loader',
+      options : {
+        importLoaders  : 1,
+        modules        : true,
+        import         : true,
+        minimize       : true,
+        sourceMap      : isProd == true ? false : true,
+        camelCase      : true,
+        localIdentName : '[path][name]---[local]---[hash : base64 : 5]'
+      }
+    },
+    {
+      loader : 'postcss-loader'
+    }
+  ]
+}
 
 process.env.BABEL_ENV = LAUNCH_COMMAND
 process.env.LINT_ENV  = LAUNCH_COMMAND
@@ -75,22 +97,22 @@ const base = {
       {
         enforce : 'pre',
         test    : /\.js$/,
-        loader  : 'eslint-loader',
+        use     : 'eslint-loader',
         include : PATHS.js,
         exclude : /bundle\.js/
       },
       {
         test    : /\.js$/,
         exclude : /node_modules/,
-        loader  : 'babel-loader'
+        use     : 'babel-loader'
       },
       {
         test   : /\.tpl$/,
-        loader : 'handlebars-loader'
+        use    : 'handlebars-loader'
       },
       {
         test : /\.css$/,
-        use : ExtractTextPlugin.extract(extractTextPluginOptions)
+        use : ExtractTextPlugin.extract(styleLoader)
       }
     ]
   },
