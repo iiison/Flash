@@ -1,7 +1,19 @@
 .xx{
-  background-color: blue;
+  background-color: #0000FF;
+  border-radius: 10px;
+  width: calc( 2 * 100px );
+  color: #FFFFFF;
+  z-index: 900;
+  position: relative;
 }
 
-.bb {
-  background-color: red;
+.bb{
+  background-color: #FF0000;
+  position: relative;
+  z-index: 800;
+}
+
+.xx:fullscreen{
+  display: flex;
+  background-color: #99FF23;
 }

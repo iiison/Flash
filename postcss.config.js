@@ -3,9 +3,11 @@ import cssnext from 'postcss-cssnext'
 */
 module.exports = {
   plugins: [
-    /*// Add prefix for specific browsers, look into
-    // browserlist file for supported browsers
-    require('autoprefixer'),*/
+    require('autoprefixer')({
+      remove : true
+    }),
+    require('postcss-zindex'),
+    require('colorguard'),
     // to load assets,
     // set relative paths,
     // Cache burst(not using at the moment)
@@ -15,14 +17,9 @@ module.exports = {
       cachebuster : true,
       loadPaths   : ['fonts/', 'images/']
     }),
-    // Optimize CSS
-    // for more details: http://cssnano.co/optimisations/
-    require('cssnano'),
-
-    require('postcss-unique-selectors'),
-    require('postcss-merge-rules'),
-    require('postcss-merge-longhand'),
-    require('postcss-discard-duplicates'),
-    require('postcss-discard-comments'),
+    require('postcss-image-set-polyfill'),
+    require('postcss-color-rgba-fallback')({
+      oldie : true
+    }),
   ]
 }

@@ -11,11 +11,12 @@ MM.        8M     M8 MM    MM    MM    MM  WmmmP"
                                           Ybmmmd'
 */
 
-import path               from 'path'
-import webpack            from 'webpack'
+import path              from 'path'
+import webpack           from 'webpack'
 // import webpackLoadPlugins from 'webpack-load-plugins'
-import HtmlWebpackPlugin  from 'html-webpack-plugin'
-import ExtractTextPlugin  from 'extract-text-webpack-plugin'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import StyleLintPlugin   from 'stylelint-webpack-plugin'
 
 const LAUNCH_COMMAND = process.env.npm_lifecycle_event
 const isProd         = LAUNCH_COMMAND === 'production'
@@ -44,20 +45,51 @@ const commonsVendorChunk = new webpack.optimize.CommonsChunkPlugin({
   filename  : 'vendor.commons.js'
 })
 
-const extractTextPluginConfig  = new ExtractTextPlugin({
+const extractTextPluginConfig = new ExtractTextPlugin({
   allChunks : false,
-  filename  : '[name]_[hash:base64:5].css'
+  filename  : '[name]_[contenthash].css'
 })
 
-const extractTextPluginOptions = {
-  fallback : 'style-loader',
-  use      : ['css-loader?importLoaders=1&modules&camelCase=true&minimize=true&localIdentName=[path][name]---[local]---[hash:base64:5]', 'postcss-loader']
-}
+const styleLintConfig = new StyleLintPlugin({
+  failOnError : true,
+  files       : '**/*.css',
+  context     : './',
+  failOnError : false,
+  configFile  : 'stylelint.config.js'
+})
 // Plugins Config Ends
 
-// Style loader config
+// Style loader configs
+const cssNanoConf = {
+  calc                   : true,
+  colormin               : true,
+  core                   : true,
+  discardDuplicates      : true,
+  discardOverridden      : true,
+  mergeLonghand          : true,
+  minifyFontValues       : true,
+  minifyParams           : true,
+  normalizeCharset       : true,
+  orderedValues          : true,
+  reduceDisplayValues    : true,
+  styleCache             : true,
+  uniqueSelectors        : true,
+  convertValues          : true,
+  discardComments        : true,
+  discardEmpty           : true,
+  discardUnused          : true,
+  filterPlugins          : true,
+  mergeIdents            : true,
+  mergeRules             : true,
+  minifySelectors        : true,
+  normalizeString        : true,
+  normalizeUrl           : true,
+  reduceBackgroundRepeat : true,
+  reduceTransforms       : true
+}
+
 const styleLoader = {
-  fallbackLoader: 'style-loader',
+  fallback: 'style-loader',
   use : [
     {
       loader  : 'css-loader',
@@ -65,7 +97,7 @@ const styleLoader = {
         importLoaders  : 1,
         modules        : true,
         import         : true,
-        minimize       : true,
+        minimize       : cssNanoConf,
         sourceMap      : isProd == true ? false : true,
         camelCase      : true,
         localIdentName : '[path][name]---[local]---[hash : base64 : 5]'
@@ -127,7 +159,7 @@ const base = {
   target : 'web'
 }
 
-const commonPlugins = [HTMLWebpackPluginConfig, commonsVendorChunk, extractTextPluginConfig]
+const commonPlugins = [HTMLWebpackPluginConfig, commonsVendorChunk, extractTextPluginConfig, styleLintConfig]
 
 const prodConf = {
   devtool : 'false',
