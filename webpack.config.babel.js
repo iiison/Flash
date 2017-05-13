@@ -18,12 +18,18 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import StyleLintPlugin   from 'stylelint-webpack-plugin'
 
+import devStyleConfig from './build-configs/style-config-dev'
+
+console.log('%c <><><><><><><><><><><><><><><>', 'color: green, font-weight: bold')
+console.log(devStyleConfig)
+console.log('%c <><><><><><><><><><><><><><><>', 'color: green, font-weight: bold')
 const LAUNCH_COMMAND = process.env.npm_lifecycle_event
 const isProd         = LAUNCH_COMMAND === 'production'
 const PATHS          = {
   js         : path.join(__dirname, 'js'),
   styles     : path.join(__dirname, 'styles'),
-  build      : path.join(__dirname, 'build')
+  build      : path.join(__dirname, 'build'),
+  buildConfs : path.join(__dirname, 'build-configs')
 }
 
 // Plugins Config Starts
@@ -100,7 +106,7 @@ const styleLoader = {
         minimize       : cssNanoConf,
         sourceMap      : isProd == true ? false : true,
         camelCase      : true,
-        localIdentName : '[path][name]---[local]---[hash : base64 : 5]'
+        localIdentName : '[path][name]---[local]---[hash:base64:5]'
       }
     },
     {
@@ -135,7 +141,7 @@ const base = {
       },
       {
         test    : /\.js$/,
-        exclude : /node_modules/,
+        exclude : [/bundle\.js/, PATHS.buildConfs],
         use     : 'babel-loader'
       },
       {
@@ -143,8 +149,10 @@ const base = {
         use    : 'handlebars-loader'
       },
       {
-        test : /\.css$/,
-        use : ExtractTextPlugin.extract(styleLoader)
+        test    : /\.css$/,
+        exclude : /node_modules/,
+        // use     : isProd === true ? ExtractTextPlugin.extract(styleLoader) : devStyleConfig
+        use     : ExtractTextPlugin.extract(styleLoader)
       }
     ]
   },
@@ -159,7 +167,7 @@ const base = {
   target : 'web'
 }
 
-const commonPlugins = [HTMLWebpackPluginConfig, commonsVendorChunk, extractTextPluginConfig, styleLintConfig]
+const commonPlugins = [HTMLWebpackPluginConfig, commonsVendorChunk, styleLintConfig, extractTextPluginConfig]
 
 const prodConf = {
   devtool : 'false',

@@ -26,7 +26,10 @@ module.exports = {
     require('lost'),
     // Syntatical Sugar
     // http://simplaio.github.io/rucksack/docs
-    require('rucksack-css')
-
+    require('rucksack-css'),
+    // SASS Like syntax:
+    // Variables, Loops, Inheritance, Import, Mixins.
+    // https://github.com/jonathantneal/precss
+    require('precss')
   ]
 }
