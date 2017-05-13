@@ -71,7 +71,6 @@ var rules = {
 		//////////////
 		"property-blacklist"                : [],
 		"property-case"                     : "lower",
-		"property-no-unknown"               : true,
 		"property-no-vendor-prefix"         : true,
 		"keyframe-declaration-no-important" : true,
 

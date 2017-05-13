@@ -17,3 +17,8 @@
   display: flex;
   background-color: #99FF23;
 }
+
+.xx,
+.bb{
+  lost-column: 1/2;
+}

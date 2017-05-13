@@ -1,6 +1,7 @@
 /*import rucksack from 'rucksack-css'
 import cssnext from 'postcss-cssnext'
 */
+
 module.exports = {
   plugins: [
     require('autoprefixer')({
@@ -21,5 +22,11 @@ module.exports = {
     require('postcss-color-rgba-fallback')({
       oldie : true
     }),
+    // Grid
+    require('lost'),
+    // Syntatical Sugar
+    // http://simplaio.github.io/rucksack/docs
+    require('rucksack-css')
+
   ]
 }
