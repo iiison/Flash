@@ -18,11 +18,8 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import StyleLintPlugin   from 'stylelint-webpack-plugin'
 
-import devStyleConfig from './build-configs/style-config-dev'
+import { devStyleConfig, prodStyleConfig } from './build-configs'
 
-console.log('%c <><><><><><><><><><><><><><><>', 'color: green, font-weight: bold')
-console.log(devStyleConfig)
-console.log('%c <><><><><><><><><><><><><><><>', 'color: green, font-weight: bold')
 const LAUNCH_COMMAND = process.env.npm_lifecycle_event
 const isProd         = LAUNCH_COMMAND === 'production'
 const PATHS          = {
@@ -65,55 +62,7 @@ const styleLintConfig = new StyleLintPlugin({
 })
 // Plugins Config Ends
 
-// Style loader configs
-const cssNanoConf = {
-  calc                   : true,
-  colormin               : true,
-  core                   : true,
-  discardDuplicates      : true,
-  discardOverridden      : true,
-  mergeLonghand          : true,
-  minifyFontValues       : true,
-  minifyParams           : true,
-  normalizeCharset       : true,
-  orderedValues          : true,
-  reduceDisplayValues    : true,
-  styleCache             : true,
-  uniqueSelectors        : true,
-  convertValues          : true,
-  discardComments        : true,
-  discardEmpty           : true,
-  discardUnused          : true,
-  filterPlugins          : true,
-  mergeIdents            : true,
-  mergeRules             : true,
-  minifySelectors        : true,
-  normalizeString        : true,
-  normalizeUrl           : true,
-  reduceBackgroundRepeat : true,
-  reduceTransforms       : true
-}
 
-const styleLoader = {
-  fallback: 'style-loader',
-  use : [
-    {
-      loader  : 'css-loader',
-      options : {
-        importLoaders  : 1,
-        modules        : true,
-        import         : true,
-        minimize       : cssNanoConf,
-        sourceMap      : isProd == true ? false : true,
-        camelCase      : true,
-        localIdentName : '[path][name]---[local]---[hash:base64:5]'
-      }
-    },
-    {
-      loader : 'postcss-loader'
-    }
-  ]
-}
 
 process.env.BABEL_ENV = LAUNCH_COMMAND
 process.env.LINT_ENV  = LAUNCH_COMMAND
@@ -152,7 +101,6 @@ const base = {
         test    : /\.css$/,
         exclude : /node_modules/,
         use     : isProd === true ? ExtractTextPlugin.extract(styleLoader) : devStyleConfig
-        // use     : ExtractTextPlugin.extract(styleLoader)
       }
     ]
   },
