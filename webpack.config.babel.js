@@ -151,8 +151,8 @@ const base = {
       {
         test    : /\.css$/,
         exclude : /node_modules/,
-        // use     : isProd === true ? ExtractTextPlugin.extract(styleLoader) : devStyleConfig
-        use     : ExtractTextPlugin.extract(styleLoader)
+        use     : isProd === true ? ExtractTextPlugin.extract(styleLoader) : devStyleConfig
+        // use     : ExtractTextPlugin.extract(styleLoader)
       }
     ]
   },
@@ -167,11 +167,11 @@ const base = {
   target : 'web'
 }
 
-const commonPlugins = [HTMLWebpackPluginConfig, commonsVendorChunk, styleLintConfig, extractTextPluginConfig]
+const commonPlugins = [HTMLWebpackPluginConfig, commonsVendorChunk, styleLintConfig]
 
 const prodConf = {
   devtool : 'false',
-  plugins : commonPlugins.concat([prodPlugin])
+  plugins : commonPlugins.concat([prodPlugin, extractTextPluginConfig])
 }
 
 const devConf = {
