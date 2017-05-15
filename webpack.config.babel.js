@@ -100,7 +100,7 @@ const base = {
       {
         test    : /\.css$/,
         exclude : /node_modules/,
-        use     : isProd === true ? ExtractTextPlugin.extract(styleLoader) : devStyleConfig
+        use     : isProd === true ? ExtractTextPlugin.extract(prodStyleConfig) : devStyleConfig
       }
     ]
   },
