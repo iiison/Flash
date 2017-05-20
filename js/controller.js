@@ -1,5 +1,6 @@
 import Base from '$lib/Base'
 import View from '$js/View'
+import Model from '$js/models/Model'
 import initRoutes from '$js/routes'
 import { getTemplate } from './utils'
 
@@ -9,12 +10,17 @@ import { getTemplate } from './utils'
 class Controller extends Base {
   /**
    * Controller Class Contructor,
-   * initializes View, Model and Routes
+   * Initializes View, Model and Routes
    */
   constructor() {
     super()
 
     this.view = View.create()
+    this.model = new Model()
+
+    console.log('%c <><><><><><><><><><><><><><><>', 'color: green, font-weight: bold')
+    console.log(this.model)
+    console.log('%c <><><><><><><><><><><><><><><>', 'color: green, font-weight: bold')
 
     window.view = this.view
     this.view.on('change:viewName', (viewName) => {

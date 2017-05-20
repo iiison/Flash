@@ -109,6 +109,7 @@ const base = {
     extensions : ['.js'],
     alias      : {
       '$js'  : PATHS.js,
+      '$models'  : `${PATHS.js}/models`,
       '$lib' : `${PATHS.js}/lib`,
     }
   },
@@ -125,9 +126,15 @@ const prodConf = {
 const devConf = {
   devtool   : 'cheap-module-inline-source-map',
   devServer : {
-    contentBase : PATHS.build,
-    hot         : true,
-    inline      : true
+    hot                : true,
+    inline             : true,
+    compress           : true,
+    historyApiFallback : true,
+    contentBase        : PATHS.build,
+    clientLogLevel     : 'info',
+    overlay : {
+      errors  :true
+    }
   },
   plugins: commonPlugins.concat([new webpack.HotModuleReplacementPlugin()])
 }

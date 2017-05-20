@@ -1,5 +1,4 @@
-import Navigo from 'navigo'
-// import page from 'page'
+import page from 'page'
 
 /**
  * Using `page.js` for routing
@@ -14,8 +13,6 @@ import Navigo from 'navigo'
  * be different function call on route change.
  * @param  {Controller} controller  controller reference
  */
-
-/*
 export default function initRoutes(controller) {
   if (controller) {
     const routes = {
@@ -36,5 +33,3 @@ export default function initRoutes(controller) {
     page()
   }
 }
-*/
-
