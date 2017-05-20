@@ -1,7 +1,7 @@
 import BaseModel from '$lib/BaseModel'
 
 
-import { getUser } from '$models'
+import * as modelEvents from '$models'
 
 /**
  * Application Model class
@@ -13,6 +13,8 @@ export default class Model extends BaseModel {
   constructor() {
     super()
 
-    this.on('GET_USER', getUser)
+    this.addEvents({
+      GET_USER : modelEvents.getUser
+    })
   }
 }
