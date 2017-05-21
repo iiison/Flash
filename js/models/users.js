@@ -1,4 +1,4 @@
-import axios from 'axios'
+import { get } from '$utils/requestHandler'
 
 /**
  * Calls GetUser API and returns the data
@@ -6,7 +6,7 @@ import axios from 'axios'
  * @return {Promise}         XHR Promise
  */
 function getUser(payLoad) {
-  return axios.get('https://reqres.in/api/users/2')
+  return get('https://reqres.in/api/users/2')
 }
 
 /**
@@ -14,7 +14,7 @@ function getUser(payLoad) {
  * @return {Promise}         XHR Promise
  */
 function getUsers() {
-  return axios.get('https://reqres.in/api/users?page=3')
+  return get('https://reqres.in/api/users?page=3')
 }
 
 export default {

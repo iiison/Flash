@@ -17,5 +17,9 @@ export default class Model extends BaseModel {
       GET_USER      : modelEvents.users.getUser,
       GET_ALL_USERS : modelEvents.users.getUsers
     })
+
+    this.on('change:data', (data) => {
+      console.log('data changed!')
+    })
   }
 }

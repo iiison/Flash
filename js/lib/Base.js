@@ -37,6 +37,11 @@ export default class Base {
       this.emit(prop, value)
     }
 
+    // OPTIMIZE: optimize this call.
+    if (this.observables.data) {
+      this.emit('data')
+    }
+
     return this.data
   }
 

@@ -112,7 +112,8 @@ const base = {
       '$js'        : PATHS.js,
       '$models'    : `${PATHS.js}/models`,
       '$pageConfs' : `${PATHS.js}/page-configs`,
-      '$lib'       : `${PATHS.js}/lib`
+      '$lib'       : `${PATHS.js}/lib`,
+      '$utils'     : `${PATHS.js}/utils`
     }
   },
   target : 'web'
