@@ -14,7 +14,8 @@ export default class Model extends BaseModel {
     super()
 
     this.addEvents({
-      GET_USER : modelEvents.getUser
+      GET_USER      : modelEvents.users.getUser,
+      GET_ALL_USERS : modelEvents.users.getUsers
     })
   }
 }

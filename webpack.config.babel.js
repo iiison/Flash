@@ -22,6 +22,7 @@ import { devStyleConfig, prodStyleConfig } from './build-configs'
 
 const LAUNCH_COMMAND = process.env.npm_lifecycle_event
 const isProd         = LAUNCH_COMMAND === 'production'
+const TARGET         = !isProd ? 'https://reqres.in' : ''
 const PATHS          = {
   js         : path.join(__dirname, 'js'),
   styles     : path.join(__dirname, 'styles'),
@@ -108,9 +109,10 @@ const base = {
     modules    : [path.resolve('.'), 'node_modules'],
     extensions : ['.js'],
     alias      : {
-      '$js'  : PATHS.js,
-      '$models'  : `${PATHS.js}/models`,
-      '$lib' : `${PATHS.js}/lib`,
+      '$js'        : PATHS.js,
+      '$models'    : `${PATHS.js}/models`,
+      '$pageConfs' : `${PATHS.js}/page-configs`,
+      '$lib'       : `${PATHS.js}/lib`
     }
   },
   target : 'web'
@@ -134,7 +136,15 @@ const devConf = {
     clientLogLevel     : 'info',
     overlay : {
       errors  :true
+    },
+    /*
+    proxy : {
+      '**' : {
+        target : TARGET,
+        secure : false
+      }
     }
+    */
   },
   plugins: commonPlugins.concat([new webpack.HotModuleReplacementPlugin()])
 }

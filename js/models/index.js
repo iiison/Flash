@@ -1,1 +1,1 @@
-export getUser from './getUsers'
+export users from './users'

@@ -2,7 +2,10 @@ import Base from '$lib/Base'
 import View from '$js/View'
 import Model from '$js/models/Model'
 import initRoutes from '$js/routes'
+import * as pageConfigs from '$pageConfs'
+
 import { getTemplate } from './utils'
+
 
 /**
  * Main Class, instentiates View and Model
@@ -18,18 +21,11 @@ class Controller extends Base {
     this.view = View.create()
     this.model = new Model()
 
-    console.log('%c <><><><><><><><><><><><><><><>', 'color: green, font-weight: bold')
-    console.log(this.model)
-    console.log('%c <><><><><><><><><><><><><><><>', 'color: green, font-weight: bold')
-
-    window.view = this.view
     this.view.on('change:viewName', (viewName) => {
       getTemplate(viewName)
         .then(({ template, styles }) => {
-          console.log('%c <><><><><><><><><><><><><><><>', 'color: green')
-          console.log(styles)
-          console.log('%c <><><><><><><><><><><><><><><>', 'color: green')
           this.view.render(template, { value : `${viewName} page`, styles })
+          pageConfigs[viewName].setupPageData()
         })
     })
   }
@@ -47,6 +43,7 @@ class Controller extends Base {
 const controller = Controller.create()
 
 initRoutes(controller)
+window.controller = controller
 
 export default controller
 
