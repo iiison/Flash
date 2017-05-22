@@ -71,7 +71,7 @@ process.env.isProd    = isProd
 
 const base = {
   entry : {
-    bundle : `${PATHS.js}/controller.js`,
+    bundle : `${PATHS.js}/Controller.js`,
     vendor : ['axios'],
     styles : `${PATHS.styles}/main.css`,
   },

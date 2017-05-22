@@ -1,6 +1,6 @@
 import Base from '$lib/Base'
 import View from '$js/View'
-import Model from '$js/models/Model'
+import Model from '$models/Model'
 import initRoutes from '$js/routes'
 import * as pageConfigs from '$pageConfs'
 
@@ -19,14 +19,19 @@ class Controller extends Base {
     super()
 
     this.view = View.create()
-    this.model = new Model()
+    this.model = new Model(Model.handleDataChange)
 
     this.view.on('change:viewName', (viewName) => {
-      getTemplate(viewName)
-        .then(({ template, styles }) => {
-          this.view.render(template, { value : `${viewName} page`, styles })
-          pageConfigs[viewName].setupPageData()
+      getTemplate(viewName).then(() => {
+        const templateData = this.view.get('templates')[viewName]
+        const styles       = templateData.styles
+
+        this.view.render(templateData.template, {
+          value : `${viewName} page`,
+          styles
         })
+        pageConfigs[viewName].setupPageData()
+      })
     })
   }
 
@@ -43,7 +48,7 @@ class Controller extends Base {
 const controller = Controller.create()
 
 initRoutes(controller)
-window.controller = controller
+
 
 export default controller
 

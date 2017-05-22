@@ -4,26 +4,22 @@ import Base from '$lib/Base'
  * View Class
  */
 export default class BaseModel extends Base {
-  /**
-   * BaseModel Class Constructor
-    constructor() {
-      super()
-    }
+ /**
+  * BaseModel Class Constructor
+  * @param  {Function} onModalDataChange Will be executed when `Model.data` is updated
   */
+  constructor(onModalDataChange) {
+    super()
 
-  /**
-   * Render Templates
-   * @param  {String}  tpl     name of template to be rendered
-   * @param  {Object}  data    data to be passed through template
-   * @param  {Boolean} append  whether to append the data or clean
-   *                           parent
-   */
-  render(tpl, data, append = true) {
-    if (tpl && append) {
-      const html = tpl(data)
+    this.on('change:data', (data) => {
+      if (onModalDataChange && typeof onModalDataChange === 'function') {
+        onModalDataChange(data)
+      } else {
+        console.warn('No on data change function found. You can pass one while creating instance of Model')
+      }
 
-      document.getElementById('root').innerHTML = html
-    }
+      return this.get()
+    })
   }
 
   /**
@@ -39,10 +35,10 @@ export default class BaseModel extends Base {
   /**
    * Static Class member, just call `create` method to
    * instantiate the class
-   * @return {View}  instance of View class
-
-    static create() {
-      return new View()
-    }
+   * @param  {Function}    onModalDataChange will be called when `Model.data` changes
+   * @return {BaseModle}  instance of BaseModel class
    */
+  static create(onModalDataChange) {
+    return new BaseModel(onModalDataChange)
+  }
 }

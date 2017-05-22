@@ -6,11 +6,12 @@ import Base from '$lib/Base'
 export default class View extends Base {
   /**
    * View Class Constructor
-
+  */
   constructor() {
     super()
+
+    this.set('templates', {})
   }
-  */
 
   /**
    * Render Templates

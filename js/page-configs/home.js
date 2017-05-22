@@ -23,9 +23,6 @@ function setupPageData() {
   return Promise.all([getUsers()])
     .then((response) => {
       controller.model.set('homePage', response[0].data.data)
-      console.log('%c <><><><><><><><><><><><><><><>', 'color: green, font-weight: bold')
-      console.log(controller.model.get())
-      console.log('%c <><><><><><><><><><><><><><><>', 'color: green, font-weight: bold')
     })
 }
 

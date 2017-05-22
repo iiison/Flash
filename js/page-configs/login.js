@@ -37,9 +37,6 @@ function setupPageData() {
   return Promise.all([getUserData(), getUsers()])
     .then((response) => {
       controller.model.set('userDetails', response[0].data.data)
-      console.log('%c <><><><><><><><><><><><><><><>', 'color: green, font-weight: bold')
-      console.log(controller.model.get('userDetails'))
-      console.log('%c <><><><><><><><><><><><><><><>', 'color: green, font-weight: bold')
     })
 }
 
