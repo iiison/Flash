@@ -1,4 +1,5 @@
-import controller from '$js/Controller'
+// Temp fix to remove the circular dependency.
+let controller
 
 /**
  * Caches the template and styles at `controller.view`'s instance'
@@ -14,13 +15,13 @@ function setupTemplatesData(data) {
 
 /**
  * Fetches Template Chunks according to different routes
- * @param  {String} templateName  viewName
- * @return {Function}             Handlebars template function
+ * @param  {String} templateName       viewName
+ * @param  {Controller} controllerRef  reference of controller class
+ * @return {Function}                  Handlebars template function
  */
-export function getTemplate(templateName) {
-  console.log('%c <><><><><><><><><><><><><><><>', 'color: green, font-weight: bold')
-  console.log(controller)
-  console.log('%c <><><><><><><><><><><><><><><>', 'color: green, font-weight: bold')
+export function getTemplate(templateName, controllerRef) {
+  controller = controllerRef
+
   const viewName = controller.view.get('viewName')
   const templates = controller.view.get('templates')
 

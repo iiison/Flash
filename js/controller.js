@@ -22,7 +22,7 @@ class Controller extends Base {
     this.model = new Model(Model.handleDataChange)
 
     this.view.on('change:viewName', (viewName) => {
-      getTemplate(viewName).then(() => {
+      getTemplate(viewName, this).then(() => {
         const templateData = this.view.get('templates')[viewName]
         const styles       = templateData.styles
 
@@ -51,9 +51,3 @@ initRoutes(controller)
 
 
 export default controller
-
-/*
-document.addEventListener("DOMContentLoaded", function(event) {
-  window.
-});
-*/
