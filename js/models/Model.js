@@ -32,4 +32,15 @@ export default class Model extends BaseModel {
 
     controller.view.render(templateData.template, { styles : templateData.styles })
   }
+
+  /**
+   * Static Class member, just call `create` method to
+   * instantiate the class
+   * @param  {Function}   data data change handler(for now, can be passed
+   *                           a configuration object later)
+   * @return {Model}          New instance of model.
+   */
+  static create(data) {
+    return new Model(data)
+  }
 }

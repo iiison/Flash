@@ -127,7 +127,7 @@ const prodConf = {
 }
 
 const devConf = {
-  devtool   : 'cheap-module-inline-source-map',
+  devtool   : 'inline-source-map',
   devServer : {
     hot                : true,
     inline             : true,

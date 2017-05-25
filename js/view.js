@@ -1,9 +1,9 @@
-import Base from '$lib/Base'
+import BaseView from '$lib/BaseView'
 
 /**
  * View Class
  */
-export default class View extends Base {
+export default class View extends BaseView {
   /**
    * View Class Constructor
   */

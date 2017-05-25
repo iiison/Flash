@@ -1,4 +1,4 @@
-import { get } from '$utils/requestHandler'
+import { get } from '$utils'
 
 /**
  * Calls GetUser API and returns the data

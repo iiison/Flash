@@ -4,7 +4,7 @@ import Model from '$models/Model'
 import initRoutes from '$js/routes'
 import * as pageConfigs from '$pageConfs'
 
-import { getTemplate } from './utils'
+import { getTemplate } from '$utils'
 
 
 /**
@@ -19,7 +19,7 @@ class Controller extends Base {
     super()
 
     this.view = View.create()
-    this.model = new Model(Model.handleDataChange)
+    this.model = Model.create(Model.handleDataChange)
 
     this.view.on('change:viewName', (viewName) => {
       getTemplate(viewName, this).then(() => {
