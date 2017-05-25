@@ -1,5 +1,6 @@
 import BaseModel  from '$lib/BaseModel'
 import controller from '$js/Controller'
+import pageDataMap from '$pageConfs/pageDataMap'
 
 import * as modelEvents from '$models'
 
@@ -30,7 +31,10 @@ export default class Model extends BaseModel {
     const viewData = controller.view.get()
     const templateData = viewData.templates[viewData.viewName]
 
-    controller.view.render(templateData.template, { styles : templateData.styles })
+    controller.view.render(templateData.template, {
+      styles : templateData.styles,
+      data   : pageDataMap(viewData.viewName)
+    })
   }
 
   /**
