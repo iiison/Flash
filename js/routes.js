@@ -24,13 +24,18 @@ export default function initRoutes(controller) {
       home() {
         controller.view.set('viewName', 'home')
       },
-      // Flash-generator, Add New routes Here
+      orders() {
+        controller.view.set('viewName', 'orders')
+      },
+      // Flash-generator, Add New route function Here
     }
 
     // Set base URL, all paths will include the base path
     // page.base('/app/')
     page('/', routes.landing)
     page('/home', routes.home)
+    page('/orderValue', routes.orders)
+    // Flash-generator, Add new route
     page()
   }
 }
