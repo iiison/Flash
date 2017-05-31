@@ -27,7 +27,6 @@ class Controller extends Base {
         const styles       = templateData.styles
 
         this.view.render(templateData.template, {
-          value : `${viewName} page`,
           styles
         })
         pageConfigs[viewName].setupPageData()

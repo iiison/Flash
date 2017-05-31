@@ -23,7 +23,8 @@ export default function initRoutes(controller) {
       },
       home() {
         controller.view.set('viewName', 'home')
-      }
+      },
+      // Flash-generator, Add New routes Here
     }
 
     // Set base URL, all paths will include the base path

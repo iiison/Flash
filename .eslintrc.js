@@ -107,7 +107,8 @@ const baseRules = {
   "camelcase": 2,
   "block-spacing": 2,
   "brace-style": 2,
-  "comma-dangle": [2, "never"],
+  // "comma-dangle": [2, "never"],
+  "comma-dangle": 0,
   "comma-spacing": [ 2, {
     "before": false,
     "after": true
