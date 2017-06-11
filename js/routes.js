@@ -23,7 +23,7 @@ export default function initRoutes(controller) {
       },
       home() {
         controller.view.set('viewName', 'home')
-      }
+      },
       // Flash-generator, Add New route function Here
     }
 
