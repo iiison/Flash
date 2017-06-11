@@ -23,10 +23,7 @@ export default function initRoutes(controller) {
       },
       home() {
         controller.view.set('viewName', 'home')
-      },
-      orders() {
-        controller.view.set('viewName', 'orders')
-      },
+      }
       // Flash-generator, Add New route function Here
     }
 
@@ -34,8 +31,8 @@ export default function initRoutes(controller) {
     // page.base('/app/')
     page('/', routes.landing)
     page('/home', routes.home)
-    page('/orderValue', routes.orders)
-    // Flash-generator, Add new route
+    // Flash-generator, Add New routes Here
+
     page()
   }
 }

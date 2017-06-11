@@ -6,7 +6,7 @@ let controller
  * @param  {Object} data  contains 2 properties: `template` and `styles`
  */
 function setupTemplatesData(data) {
-  const viewName  = controller.view.get('viewName')
+  const viewName = controller.view.get('viewName')
   const templates = controller.view.get('templates')
 
   templates[viewName] = data
@@ -27,7 +27,7 @@ export function getTemplate(templateName, controllerRef) {
 
   if (!templates[viewName]) {
     switch (templateName) {
-    case 'login' :
+    case 'login':
       return Promise.all([
         System.import('templates/login.tpl'),
         System.import('styles/base.css')
@@ -43,7 +43,7 @@ export function getTemplate(templateName, controllerRef) {
         throw error
       })
 
-    case 'home' :
+    case 'home':
       return Promise.all([
         System.import('templates/home.tpl'),
         System.import('styles/base1.css')
@@ -59,7 +59,9 @@ export function getTemplate(templateName, controllerRef) {
         throw error
       })
 
-    default :
+    // Flash-generator, add new function here
+
+    default:
       throw new Error('invalid view name')
     }
   }
