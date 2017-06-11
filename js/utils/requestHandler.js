@@ -4,6 +4,7 @@ const defaultHeaders = {
   'Content-Type' : 'application/json'
 }
 
+/* eslint-disable */
 /**
  * Get Request wrapper
  * @param  {String} url  URL to hit
@@ -16,7 +17,7 @@ export function get(url) {
 
   return axios.get(url)
 }
-
+/* eslint-enable */
 /**
  * Post Request wrapper
  * @param  {Object} reqObj  request data, should have

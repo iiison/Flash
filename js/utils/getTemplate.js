@@ -59,7 +59,7 @@ export function getTemplate(templateName, controllerRef) {
         throw error
       })
 
-    // Flash-generator, add new function here
+ // Flash-generator, add new function here
 
     default:
       throw new Error('invalid view name')
