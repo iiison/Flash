@@ -23,14 +23,15 @@ export default function initRoutes(controller) {
       },
       home() {
         controller.view.set('viewName', 'home')
-      },
-      // Flash-generator, Add New routes Here
+      }
+      // Flash-generator, Add New route function Here
     }
 
     // Set base URL, all paths will include the base path
     // page.base('/app/')
     page('/', routes.landing)
     page('/home', routes.home)
+    // Flash-generator, Add New routes Here
     page()
   }
 }
