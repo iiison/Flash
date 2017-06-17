@@ -1,3 +1,26 @@
-body{
-  background-color: #F0F4F5;
-}
+/* ====================================================== *\
+    VENDOR - Default fall-backs and external files.
+\* ====================================================== */
+
+@import "vendor/reset";
+
+/* ====================================================== *\
+      BASE - Base Variable file along with starting
+      point Mixins and Placeholders.
+\* ====================================================== */
+
+@import "base/variables";
+
+@import "base/base";
+
+/* ====================================================== *\
+      Grid - Main, and other responsive grids
+\* ====================================================== */
+
+@import "grid/grid";
+
+/* ====================================================== *\
+      FRAMEWORK - Structure and layout.
+\* ====================================================== */
+
+@import "framework/layout";

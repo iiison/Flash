@@ -30,7 +30,7 @@ export function getTemplate(templateName, controllerRef) {
     case 'login':
       return Promise.all([
         System.import('templates/login.tpl'),
-        System.import('styles/base.css')
+        System.import('styles/modules/base.css')
       ]).then((modules) => {
         const templatesData = {
           template : modules[0],
@@ -46,7 +46,7 @@ export function getTemplate(templateName, controllerRef) {
     case 'home':
       return Promise.all([
         System.import('templates/home.tpl'),
-        System.import('styles/base1.css')
+        System.import('styles/modules/base1.css')
       ]).then((modules) => {
         const templatesData = {
           template : modules[0],

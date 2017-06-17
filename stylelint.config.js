@@ -32,7 +32,7 @@ var rules = {
      // Number //
     ////////////
     "number-leading-zero"      : "always",
-    "number-max-precision"     : 3,
+    "number-max-precision"     : 4,
     "number-no-trailing-zeros" : true,
 
       ////////////
